@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "ViewComfy",
+  title: "基于扩散模型的智能换脸系统",
   description: "From ComfyUI to beatiful web apps",
 };
 

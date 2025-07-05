@@ -20,23 +20,23 @@ export default function Page() {
             <div className="flex flex-col h-screen w-full overflow-x-auto overflow-y-hidden">
                 <TopNav />
                 <div className="flex flex-1 overflow-x-auto overflow-y-hidden">
-                    <Sidebar currentTab={currentTab} onTabChange={setCurrentTab} deployWindow={deployWindow} onDeployWindow={setDeployWindow}/>
+                    {/* <Sidebar currentTab={currentTab} onTabChange={setCurrentTab} deployWindow={deployWindow} onDeployWindow={setDeployWindow}/> */}
                     <main className="flex-1 overflow-x-auto overflow-y-hidden">
                         {currentTab === TabValue.Playground && <PlaygroundPage />}
-                        {currentTab === TabValue.WorkflowApi && <ViewComfyPage />}
+                        {/* {currentTab === TabValue.WorkflowApi && <ViewComfyPage />} */}
                     </main>
                 </div>
             </div>
             {deployWindow &&
             <>
-                <div className="absolute inset-0 bg-black/50 z-10" 
+                {/* <div className="absolute inset-0 bg-black/50 z-10" 
                     onClick={() => setDeployWindow(false)}
                 />
                 <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg shadow-lg p-6 z-20">
                     <h2 className="text-xl font-bold mb-4 text-center">Deploy your app to the cloud</h2>
                     <p className="text-sm mb-4 text-center">Want to run your app on the hardware of your choice and give other people access via the internet? ViewComfy&apos;s deployment service is the easiest way to host your app.</p>
                     <div className="flex justify-center py-2 space-x-4">
-                    <Button 
+                    {/* <Button 
                             className="mt-4 px-4 w-[150px]"
                             onClick={() => {
                                 window.open('https://youtu.be/pIODXFU9sHw', '_blank');
@@ -53,11 +53,12 @@ export default function Page() {
                             }}
                         >
                             Deploy now
-                        </Button>
-                    </div>
-                </div>
+                        // </Button> */}
+                    // {/* </div>
+                </div> */}
             </>
-            }
+            } 
+                
             <Toaster />
         </ViewComfyProvider>
     )

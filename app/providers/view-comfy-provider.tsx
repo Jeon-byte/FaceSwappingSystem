@@ -8,7 +8,9 @@ export interface IViewComfyBase {
     previewImages: string[];
     inputs: IMultiValueInput[];
     advancedInputs: IMultiValueInput[];
+    email?: string; 
 }
+
 
 export interface IViewComfyDraft {
     viewComfyJSON: IViewComfyBase;
@@ -18,6 +20,7 @@ export interface IViewComfyDraft {
 
 export interface IViewComfyWorkflow extends IViewComfyBase {
     id: string;
+    email?: string; 
 }
 
 export interface IViewComfyJSON {

@@ -47,6 +47,7 @@ export class ComfyUIService {
                 async start(controller) {
                     for (const file of outputFiles) {
                         try {
+                             // 尝试获取文件的 Blob 对象和 MIME 类型
                             let outputBuffer: Blob;
                             let mimeType: string;
                             if (typeof file === 'string' && textOutputEnabled) {
@@ -60,8 +61,10 @@ export class ComfyUIService {
                                 mimeType =
                                     mime.lookup(file?.filename) || "application/octet-stream";
                             }
+                             // 构建 MIME 信息字符串并将其编码后添加到流中
                             const mimeInfo = `Content-Type: ${mimeType}\r\n\r\n`;
                             controller.enqueue(new TextEncoder().encode(mimeInfo));
+                            // 将文件的二进制数据添加到流中
                             controller.enqueue(
                                 new Uint8Array(await outputBuffer.arrayBuffer()),
                             );

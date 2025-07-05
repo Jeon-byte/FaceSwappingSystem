@@ -3,15 +3,14 @@ import { useRef, useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { FileUp } from 'lucide-react';
 
-// Define the props expected by the Dropzone component
+
 interface DropzoneProps {
     onChange: (file: File | null) => void;
     className?: string;
     fileExtensions?: string[];
     inputPlaceholder?: React.ReactNode;
 }
-
-// Create the Dropzone component receiving props
+// 创建 Dropzone 组件，接收定义的属性
 export function Dropzone({
     onChange,
     className,
@@ -19,17 +18,15 @@ export function Dropzone({
     inputPlaceholder,
     ...props
 }: DropzoneProps) {
-    // Initialize state variables using the useState hook
-    const fileInputRef = useRef<HTMLInputElement | null>(null); // Reference to file input element
-    const [error, setError] = useState<string | null>(null); // Error message state
-
-    // Function to handle drag over event
+    // 使用 useRef 钩子初始化文件输入元素的引用
+    const fileInputRef = useRef<HTMLInputElement | null>(null); 
+    const [error, setError] = useState<string | null>(null); 
+    // 处理拖拽到该区域上的事件
     const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
         e.preventDefault();
         e.stopPropagation();
     };
-
-    // Function to handle drop event
+    // 处理释放拖拽文件到该区域的事件
     const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
         e.preventDefault();
         e.stopPropagation();
@@ -37,7 +34,7 @@ export function Dropzone({
         handleFiles(files);
     };
 
-    // Function to handle file input change event
+    // 处理文件输入框改变事件
     const handleFileInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { files } = e.target;
         if (files) {
@@ -45,35 +42,34 @@ export function Dropzone({
         }
     };
 
-    // Function to handle processing of uploaded files
+    // 处理上传文件的函数
     const handleFiles = (files: FileList) => {
         if (files.length > 1) {
             setError("You can only upload one file at a time");
             return;
         }
         const uploadedFile = files[0];
-
-        // Check file extension
+        // 检查文件扩展名是否符合要求
         if (fileExtensions && !fileExtensions.some(fileExtension => uploadedFile.name.endsWith(fileExtension))) {
             // if (fileExtensions && !uploadedFile.name.endsWith(`${fileExtension}`)) {
             setError(`Invalid file type. Expected: ${fileExtensions.join(', ')}`);
             return;
         }
 
-        onChange(uploadedFile); // Pass the File object directly
+        onChange(uploadedFile); // 直接传递 File 对象给 onChange 回调
 
         if (fileInputRef.current) {
             fileInputRef.current.value = '';
         }
-        setError(null); // Reset error state
+        setError(null); // 重置错误状态
     };
-
-    // Function to simulate a click on the file input element
+    // 模拟点击文件输入元素的函数
     const handleButtonClick = () => {
         if (fileInputRef.current) {
             fileInputRef.current.click();
         }
     };
+    // 渲染组件
     return (
         <Card
             className={`border-2 border-dashed bg-muted hover:cursor-pointer hover:border-muted-foreground/50 w-full flex items-center justify-center ${className}`}
